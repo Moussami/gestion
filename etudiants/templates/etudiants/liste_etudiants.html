@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Étudiants</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Liste des Étudiants</h1>
+        <a href="{% url 'ajouter_etudiant' %}" class="btn btn-primary mb-3">Ajouter un Étudiant</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Date de Naissance</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for etudiant in etudiants %}
+                <tr>
+                    <td>{{ etudiant.id }}</td>
+                    <td>{{ etudiant.nom }}</td>
+                    <td>{{ etudiant.prenom }}</td>
+                    <td>{{ etudiant.email }}</td>
+                    <td>{{ etudiant.date_naissance }}</td>
+                    <td>
+                        <a href="{% url 'modifier_etudiant' etudiant.id %}" class="btn btn-warning btn-sm">Modifier</a>
+                        <a href="{% url 'supprimer_etudiant' etudiant.id %}" class="btn btn-danger btn-sm">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
